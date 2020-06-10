@@ -1,1 +1,14 @@
 @import "~antd/dist/antd.dark.css";
+
+.ant-layout-sider {
+  flex: unset !important;
+  max-width: unset !important;
+  width: max-content !important;
+}
+
+.logo {
+  margin: 40px;
+}
+.logo img {
+  max-width: 230px;
+}
