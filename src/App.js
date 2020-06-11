@@ -1,31 +1,32 @@
 import React from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
-import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import Icon from "@ant-design/icons";
+import BatIcon from "./Icons/bat-icon.svg";
+import BowlIcon from "./Icons/bowl-icon.svg";
+import VenueIcon from "./Icons/venue-icon.svg";
+
 import "./App.css";
 
 const iconPath = process.env.PUBLIC_URL + "/assets/";
-
 const { Header, Content, Sider } = Layout;
-const { SubMenu } = Menu;
 
 class App extends React.Component {
   state = {
     collapsed: false,
+    tab: "1",
   };
 
   onCollapse = (collapsed) => {
     this.setState({ collapsed });
   };
 
+  onTabChange = (event) => {
+    this.setState({ tab: event.key });
+  };
+
   render() {
     return (
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout className="dashboard-layout">
         <Sider
           collapsible
           collapsed={this.state.collapsed}
@@ -34,14 +35,43 @@ class App extends React.Component {
           <div className="logo">
             <img src={`${iconPath}full-logo.svg`} alt="Logo" />
           </div>
-          <Menu defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
+          <Menu
+            defaultSelectedKeys={[this.state.tab]}
+            mode="inline"
+            className="nav-menu"
+            onClick={this.onTabChange}
+          >
+            <Menu.Item
+              key="1"
+              icon={
+                <Icon
+                  component={BatIcon}
+                  className={this.state.tab === "1" ? "svg-focus" : ""}
+                />
+              }
+            >
               Batting
             </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
+            <Menu.Item
+              key="2"
+              icon={
+                <Icon
+                  component={BowlIcon}
+                  className={this.state.tab === "2" ? "svg-focus" : ""}
+                />
+              }
+            >
               Bowling
             </Menu.Item>
-            <Menu.Item key="3" icon={<FileOutlined />}>
+            <Menu.Item
+              key="3"
+              icon={
+                <Icon
+                  component={VenueIcon}
+                  className={this.state.tab === "3" ? "svg-focus" : ""}
+                />
+              }
+            >
               Venue
             </Menu.Item>
           </Menu>
