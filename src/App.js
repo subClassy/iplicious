@@ -4,6 +4,7 @@ import Icon from "@ant-design/icons";
 import BatIcon from "./Icons/bat-icon.svg";
 import BowlIcon from "./Icons/bowl-icon.svg";
 import VenueIcon from "./Icons/venue-icon.svg";
+import BattingStats from "./Components/BattingStats";
 
 import "./App.scss";
 
@@ -79,12 +80,9 @@ class App extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Content style={{ margin: "0 16px" }}>
-            <div
-              className="site-layout-background"
-              style={{ padding: 24, minHeight: 360 }}
-            >
-              Bill is a cat.
+          <Content className="site-layout-container">
+            <div className="site-layout-background">
+              <BattingStats />
             </div>
           </Content>
         </Layout>

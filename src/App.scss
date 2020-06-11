@@ -53,4 +53,39 @@
     position: unset;
     width: unset !important;
   }
+
+  & .site-layout .site-layout-container {
+    margin: 0 16px;
+
+    & .site-layout-background {
+      padding: 24px;
+      min-height: 360px;
+
+      & .stat-heading {
+        font-weight: 700;
+        font-size: 2.5em;
+        letter-spacing: 1.2px;
+        padding-top: 1em;
+      }
+
+      & .stat-subheading {
+        font-size: 1.8em;
+      }
+
+      & .stat-subdiv {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        & .filter {
+          max-width: 35%;
+
+          & label {
+            padding-right: 10px;
+            font-size: 1.2em;
+          }
+        }
+      }
+    }
+  }
 }

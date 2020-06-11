@@ -1,16 +1,16 @@
-1) Per Stadium stats - 
+1) Per Stadium stats -
     1) Matches won per stadium by home team.
     2) Matches won per stadium by batting first.
     3) Over Progression for batting (1-6, 7-15, 16-20)
 
-2) Bowling Stats per year - 
-    1) Best Economic Bowler
-    2) Most Wickets
-    3) Most Maiden Overs
-    4) Most Extras Conceded
-    5) Dissmisal Stats (ratio of dissmisal types)
+2) Bowling Stats per year -
+    1) Most Dot Balls
+    2) Most Extras Conceded
+    3) Dissmisal Stats (ratio of dissmisal types)
+    // 4) Best Economic Bowler at 16-20
+    // 5) Most wickets bowling first/defending target
 
 3) Batting Stats per Year -
-    1) Most runs scores
-    2) Most sixes
+    1) Most runs in overs 16-20
+    2) Best partnership
     3) Scoring stats (ratio of runs scored per ball)
