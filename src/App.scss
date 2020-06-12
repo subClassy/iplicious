@@ -12,6 +12,11 @@ $breakpoint-laptop: 1120px;
     flex: unset !important;
     max-width: unset !important;
     width: max-content !important;
+    overflow: hidden;
+    height: 100vh;
+    position: sticky;
+    top: 0px;
+    left: 0px;
   }
 
   & .logo {
@@ -100,9 +105,11 @@ $breakpoint-laptop: 1120px;
         }
         & .stats-container {
           margin-top: 20px;
+        }
+
+        & .highestRunGetter-stat {
           display: grid;
           grid-template-areas: "number1" "number2" "number3";
-          height: 220px;
           @media (min-width: $breakpoint-tablet) {
             grid-template-areas: "number1 number1" "number2 number3";
           }
@@ -117,8 +124,6 @@ $breakpoint-laptop: 1120px;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
             margin: 10px;
           }
-        }
-        & .highestRunGetter-stat {
           .stat-card:nth-child(1) {
             background: #ee0979;
             background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);
@@ -155,6 +160,13 @@ $breakpoint-laptop: 1120px;
           & .stat-card:nth-child(3) {
             grid-area: number3;
           }
+        }
+
+        & .partnership-chart-container {
+          @media (min-width: $breakpoint-tablet) {
+            height: 500px;
+          }
+          height: 250px;
         }
       }
     }

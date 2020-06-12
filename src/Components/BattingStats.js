@@ -1,5 +1,6 @@
 import React from "react";
 import { Divider, Cascader, Card, Statistic } from "antd";
+import { ResponsiveChord } from "@nivo/chord";
 import { getYears } from "../Stats/commonStats";
 import { runsScoredAtDeath, partnershipDuo } from "../Stats/battingStats";
 
@@ -24,6 +25,69 @@ function highestRunGetterStat(highestRunGetterMap) {
   return cards;
 }
 
+function partnershipStat(bestPartnerships) {
+  let statMatrix = [];
+  let playerList = bestPartnerships.map((partnership) => {
+    return Object.keys(partnership);
+  });
+
+  playerList = [...new Set(playerList.flat())];
+
+  statMatrix = playerList.map((player1) => {
+    let runScored = [];
+    for (let i = 0; i < playerList.length; i++) {
+      const player2 = playerList[i];
+      if (player1 === player2) {
+        runScored.push(0);
+        continue;
+      }
+      let partnershipExists = false;
+      bestPartnerships.forEach((partnership) => {
+        if (
+          Object.keys(partnership).indexOf(player2) !== -1 &&
+          Object.keys(partnership).indexOf(player1) !== -1
+        ) {
+          partnershipExists = true;
+          runScored.push(partnership[player1]);
+        }
+      });
+      if (!partnershipExists) {
+        runScored.push(0);
+      }
+    }
+    return runScored;
+  });
+  return (
+    <div className="partnership-chart-container">
+      <ResponsiveChord
+        matrix={statMatrix}
+        keys={playerList.map((player) => {
+          return player;
+        })}
+        margin={{ top: 60, right: 60, bottom: 90, left: 60 }}
+        arcOpacity={0.8}
+        arcBorderWidth={1}
+        arcBorderColor="#000000"
+        ribbonOpacity={0.6}
+        ribbonBorderWidth={3}
+        ribbonBorderColor="#000000"
+        colors={{ scheme: "nivo" }}
+        isInteractive={true}
+        animate={true}
+        motionStiffness={90}
+        motionDamping={7}
+        theme={{
+          tooltip: {
+            container: {
+              background: "#333",
+            },
+          },
+        }}
+      />
+    </div>
+  );
+}
+
 class BattingStats extends React.Component {
   state = {
     yearOptions: yearOptions,
@@ -34,6 +98,9 @@ class BattingStats extends React.Component {
   };
 
   onRunsFilterChange = (value) => {
+    if (value.length === 0) {
+      value.push("allTime");
+    }
     this.setState({ runsFilter: value[0] }, () => {
       const highestRunGetters = runsScoredAtDeath(this.state.runsFilter);
       highestRunGetters.then((val) => {
@@ -45,6 +112,9 @@ class BattingStats extends React.Component {
   };
 
   onPartnershipFilterChange = (value) => {
+    if (value.length === 0) {
+      value.push("allTime");
+    }
     this.setState({ partnershipFilter: value[0] }, () => {
       const bestPartnerships = partnershipDuo(this.state.partnershipFilter);
       bestPartnerships.then((val) => {
@@ -109,8 +179,8 @@ class BattingStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container highestRunGetter-stat">
-            {highestRunGetterStat(this.state.highestRunGetters)}
+          <div className="stats-container bestPartnership-stat">
+            {partnershipStat(this.state.bestPartnerships)}
           </div>
           <Divider />
         </div>

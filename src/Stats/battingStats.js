@@ -96,7 +96,7 @@ async function partnershipDuo(year) {
 
   let count = 0;
   let bestPartnerships = [];
-  for (const [key, value] of sortedPartnerships) {
+  for (const [key] of sortedPartnerships) {
     count += 1;
     if (count === 4) {
       break;
