@@ -1,7 +1,7 @@
 import React from "react";
 import { Divider, Cascader, Card, Statistic } from "antd";
 import { getYears } from "../Stats/commonStats";
-import { runsScoredAtDeath } from "../Stats/battingStats";
+import { runsScoredAtDeath, partnershipDuo } from "../Stats/battingStats";
 
 import "../App.scss";
 
@@ -30,6 +30,7 @@ class BattingStats extends React.Component {
     runsFilter: "allTime",
     partnershipFilter: "allTime",
     highestRunGetters: [],
+    bestPartnerships: [],
   };
 
   onRunsFilterChange = (value) => {
@@ -44,7 +45,14 @@ class BattingStats extends React.Component {
   };
 
   onPartnershipFilterChange = (value) => {
-    this.setState({ partnershipFilter: value[0] });
+    this.setState({ partnershipFilter: value[0] }, () => {
+      const bestPartnerships = partnershipDuo(this.state.partnershipFilter);
+      bestPartnerships.then((val) => {
+        this.setState({
+          bestPartnerships: val,
+        });
+      });
+    });
   };
 
   filter = (inputValue, path) => {
@@ -58,6 +66,10 @@ class BattingStats extends React.Component {
     const highestRunGetters = await runsScoredAtDeath(this.state.runsFilter);
     this.setState({
       highestRunGetters,
+    });
+    const bestPartnerships = await partnershipDuo(this.state.partnershipFilter);
+    this.setState({
+      bestPartnerships,
     });
   }
 

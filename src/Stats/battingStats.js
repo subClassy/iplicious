@@ -48,4 +48,73 @@ async function runsScoredAtDeath(year) {
   return highestRunGetters;
 }
 
-export { runsScoredAtDeath };
+async function partnershipDuo(year) {
+  let partnerships = new Map();
+  if (year === "allTime") {
+    year = getYearString();
+  }
+
+  let jStarting = 0;
+  for (let i = 0; i < balls.length; i++) {
+    const ball = balls[i];
+    for (let j = jStarting; j < matches.length; j++) {
+      const match = matches[j];
+      if (
+        ball.Match_Id === match.Match_Id &&
+        year.includes(match.Match_Date.split("-")[2])
+      ) {
+        jStarting = j;
+        const partnershipString = ball.Striker_Id + "-" + ball.Non_Striker_Id;
+        let currentScore = 0;
+        if (partnerships.has(partnershipString)) {
+          currentScore = partnerships.get(partnershipString);
+        }
+        if (typeof ball.Batsman_Scored === "number") {
+          currentScore += ball.Batsman_Scored;
+        }
+        if (typeof ball.Extra_Runs === "number") {
+          currentScore += ball.Extra_Runs;
+        }
+        partnerships.set(partnershipString, currentScore);
+      }
+    }
+  }
+  let partnershipsCombined = new Map();
+  for (const [key, value] of partnerships) {
+    let involvedPlayers = key.split("-").reverse().join("-");
+    if (!partnershipsCombined.has(involvedPlayers)) {
+      let combinedTotal = value;
+      if (partnerships.has(involvedPlayers)) {
+        combinedTotal += partnerships.get(involvedPlayers);
+      }
+      partnershipsCombined.set(key, combinedTotal);
+    }
+  }
+  const sortedPartnerships = new Map(
+    [...partnershipsCombined.entries()].sort((a, b) => b[1] - a[1])
+  );
+
+  let count = 0;
+  let bestPartnerships = [];
+  for (const [key, value] of sortedPartnerships) {
+    count += 1;
+    if (count === 4) {
+      break;
+    }
+    let involvedPlayers = key.split("-");
+    const player1 = players[involvedPlayers[0] - 1].Player_Name;
+    const player2 = players[involvedPlayers[1] - 1].Player_Name;
+    const player1Score = partnerships.get(key);
+    const player2Score = partnerships.get(involvedPlayers.reverse().join("-"));
+
+    const partnership = {
+      [player1]: player1Score,
+      [player2]: player2Score,
+    };
+    bestPartnerships.push(partnership);
+  }
+
+  return bestPartnerships;
+}
+
+export { runsScoredAtDeath, partnershipDuo };
