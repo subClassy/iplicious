@@ -117,4 +117,45 @@ async function partnershipDuo(year) {
   return bestPartnerships;
 }
 
-export { runsScoredAtDeath, partnershipDuo };
+async function typeOfRunsScored(year) {
+  let runsScored = new Map();
+  if (year === "allTime") {
+    year = getYearString();
+  }
+
+  let jStarting = 0;
+  for (let i = 0; i < balls.length; i++) {
+    const ball = balls[i];
+    for (let j = jStarting; j < matches.length; j++) {
+      const match = matches[j];
+      if (
+        ball.Match_Id === match.Match_Id &&
+        year.includes(match.Match_Date.split("-")[2])
+      ) {
+        jStarting = j;
+        if (typeof ball.Batsman_Scored === "number") {
+          let currentScore = 0;
+          if (runsScored.has(ball.Batsman_Scored)) {
+            currentScore = runsScored.get(ball.Batsman_Scored);
+          }
+          currentScore += ball.Batsman_Scored;
+          runsScored.set(ball.Batsman_Scored, currentScore);
+        }
+        if (typeof ball.Extra_Runs === "number") {
+          let currentScore = 0;
+          if (runsScored.has("Extras")) {
+            currentScore = runsScored.get("Extras");
+          }
+          currentScore += ball.Extra_Runs;
+          runsScored.set("Extras", currentScore);
+        }
+      }
+    }
+  }
+  runsScored.delete(0);
+  runsScored = new Map([...runsScored.entries()].sort((a, b) => a[0] - b[0]));
+
+  return runsScored;
+}
+
+export { runsScoredAtDeath, partnershipDuo, typeOfRunsScored };

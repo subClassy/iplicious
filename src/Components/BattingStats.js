@@ -1,9 +1,14 @@
 import React from "react";
 import { Divider, Cascader } from "antd";
 import { getYears } from "../Stats/commonStats";
-import { runsScoredAtDeath, partnershipDuo } from "../Stats/battingStats";
+import {
+  runsScoredAtDeath,
+  partnershipDuo,
+  typeOfRunsScored,
+} from "../Stats/battingStats";
 import PartnershipStat from "./BattingPresentationComponents/PartnershipStat";
 import DeathRuns from "./BattingPresentationComponents/DeathRuns";
+import RunsRatio from "./BattingPresentationComponents/RunsRatio";
 
 import "../App.scss";
 
@@ -19,8 +24,10 @@ class BattingStats extends React.Component {
     yearOptions: yearOptions,
     runsFilter: "allTime",
     partnershipFilter: "allTime",
+    runsRatioFilter: "allTime",
     highestRunGetters: [],
     bestPartnerships: [],
+    runsRatio: [],
   };
 
   onRunsFilterChange = (value) => {
@@ -51,6 +58,20 @@ class BattingStats extends React.Component {
     });
   };
 
+  onRunsRatioFilterChange = (value) => {
+    if (value.length === 0) {
+      value.push("allTime");
+    }
+    this.setState({ runsRatioFilter: value[0] }, () => {
+      const runsRatio = typeOfRunsScored(this.state.runsRatioFilter);
+      runsRatio.then((val) => {
+        this.setState({
+          runsRatio: val,
+        });
+      });
+    });
+  };
+
   filter = (inputValue, path) => {
     return path.some(
       (option) =>
@@ -66,6 +87,10 @@ class BattingStats extends React.Component {
     const bestPartnerships = await partnershipDuo(this.state.partnershipFilter);
     this.setState({
       bestPartnerships,
+    });
+    const runsRatio = await typeOfRunsScored(this.state.runsRatioFilter);
+    this.setState({
+      runsRatio,
     });
   }
 
@@ -107,6 +132,24 @@ class BattingStats extends React.Component {
           </div>
           <div className="stats-container bestPartnership-stat">
             <PartnershipStat bestPartnerships={this.state.bestPartnerships} />
+          </div>
+          <Divider />
+        </div>
+        <div className="stat-subdiv">
+          <div className="heading">
+            <h2 className="stat-subheading">Ratio of Runs Scored</h2>
+            <div className="filter">
+              <label>Filter: </label>
+              <Cascader
+                options={this.state.yearOptions}
+                onChange={this.onRunsRatioFilterChange}
+                defaultValue={["allTime"]}
+                showSearch={this.filter}
+              />
+            </div>
+          </div>
+          <div className="stats-container runsRatio-stat">
+            <RunsRatio runsRatio={this.state.runsRatio} />
           </div>
           <Divider />
         </div>
