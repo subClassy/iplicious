@@ -14,7 +14,7 @@ const windowWidth = window.innerWidth;
 
 class App extends React.Component {
   state = {
-    collapsed: windowWidth > 768 ? false : true,
+    collapsed: windowWidth > 1024 ? false : true,
     tab: "1",
   };
 

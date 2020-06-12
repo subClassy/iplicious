@@ -1,5 +1,9 @@
 @import "~antd/dist/antd.dark.css";
 
+$breakpoint-phone: 425px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1120px;
+
 .dashboard-layout {
   min-height: 100vh;
   font-family: Oswald;
@@ -73,16 +77,83 @@
       }
 
       & .stat-subdiv {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        @media (min-width: $breakpoint-laptop) {
+          max-width: 75%;
+        }
 
-        & .filter {
-          max-width: 35%;
+        & .heading {
+          @media (min-width: $breakpoint-laptop) {
+            flex-direction: row;
+          }
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
 
-          & label {
-            padding-right: 10px;
-            font-size: 1.2em;
+          & .filter {
+            max-width: 35%;
+
+            & label {
+              padding-right: 10px;
+              font-size: 1.2em;
+            }
+          }
+        }
+        & .stats-container {
+          margin-top: 20px;
+          display: grid;
+          grid-template-areas: "number1" "number2" "number3";
+          height: 220px;
+          @media (min-width: $breakpoint-tablet) {
+            grid-template-areas: "number1 number1" "number2 number3";
+          }
+          @media (min-width: $breakpoint-laptop) {
+            grid-template-areas: "number1 . ." "number1 number2 number3";
+          }
+          & .stat-card {
+            @media (min-width: $breakpoint-phone) {
+              min-width: 250px;
+            }
+            border-radius: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+            margin: 10px;
+          }
+        }
+        & .highestRunGetter-stat {
+          .stat-card:nth-child(1) {
+            background: #ee0979;
+            background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);
+            background: linear-gradient(to right, #ff6a00, #ee0979);
+            flex: 2;
+            max-width: 420px;
+            grid-area: number1;
+            & .ant-statistic-title {
+              @media (min-width: $breakpoint-phone) {
+                font-size: 2em;
+              }
+              color: #ffc9c9;
+            }
+            & .ant-statistic-content {
+              @media (min-width: $breakpoint-phone) {
+                font-size: 3em;
+              }
+            }
+          }
+          & .stat-card:nth-child(2),
+          .stat-card:nth-child(3) {
+            background: #232526;
+            background: -webkit-linear-gradient(to right, #414345, #232526);
+            background: linear-gradient(to right, #414345, #232526);
+            align-self: flex-end;
+            @media (max-width: $breakpoint-laptop) {
+              max-width: 420px;
+            }
+          }
+          & .stat-card:nth-child(2) {
+            grid-area: number2;
+          }
+
+          & .stat-card:nth-child(3) {
+            grid-area: number3;
           }
         }
       }
