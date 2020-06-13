@@ -7,6 +7,8 @@ import {
   overProgression,
 } from "../Stats/venueStats";
 import OverProgressionChart from "./VenuePresentationComponents/OverProgressionChart";
+import InningsWinRatio from "./VenuePresentationComponents/InningsWinRatio";
+import HomeWinRatio from "./VenuePresentationComponents/HomeWinRatio";
 
 import "../App.scss";
 
@@ -119,7 +121,7 @@ class VenueStats extends React.Component {
             </div>
           </div>
           <div className="stats-container highestRunGetter-stat">
-            {/* <DeathRuns highestRunGetters={this.state.highestRunGetters} /> */}
+            <HomeWinRatio homeAdvantageStats={this.state.homeAdvantageStats} />
           </div>
           <Divider />
         </div>
@@ -136,8 +138,10 @@ class VenueStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container highestRunGetter-stat">
-            {/* <DeathRuns highestRunGetters={this.state.highestRunGetters} /> */}
+          <div className="stats-container ">
+            <InningsWinRatio
+              batFirstAdvantageStats={this.state.batFirstAdvantageStats}
+            />
           </div>
           <Divider />
         </div>
@@ -154,7 +158,7 @@ class VenueStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container highestRunGetter-stat">
+          <div className="stats-container">
             <OverProgressionChart overProgression={this.state.overProgStats} />
           </div>
           <Divider />
