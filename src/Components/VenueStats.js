@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Divider, Cascader } from "antd";
 import { getVenues } from "../Stats/commonStats";
 import {
@@ -6,11 +6,17 @@ import {
   battingFirstWinsRatio,
   overProgression,
 } from "../Stats/venueStats";
-import OverProgressionChart from "./VenuePresentationComponents/OverProgressionChart";
-import InningsWinRatio from "./VenuePresentationComponents/InningsWinRatio";
-import HomeWinRatio from "./VenuePresentationComponents/HomeWinRatio";
-
 import "../App.scss";
+
+const OverProgressionChart = lazy(() =>
+  import("./VenuePresentationComponents/OverProgressionChart")
+);
+const InningsWinRatio = lazy(() =>
+  import("./VenuePresentationComponents/InningsWinRatio")
+);
+const HomeWinRatio = lazy(() =>
+  import("./VenuePresentationComponents/HomeWinRatio")
+);
 
 let venueOptions = getVenues().map((venue) => {
   const obj = { value: venue, label: venue };
@@ -120,9 +126,13 @@ class VenueStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container highestRunGetter-stat">
-            <HomeWinRatio homeAdvantageStats={this.state.homeAdvantageStats} />
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className="stats-container highestRunGetter-stat">
+              <HomeWinRatio
+                homeAdvantageStats={this.state.homeAdvantageStats}
+              />
+            </div>
+          </Suspense>
           <Divider />
         </div>
         <div className="stat-subdiv">
@@ -138,11 +148,13 @@ class VenueStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container ">
-            <InningsWinRatio
-              batFirstAdvantageStats={this.state.batFirstAdvantageStats}
-            />
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className="stats-container ">
+              <InningsWinRatio
+                batFirstAdvantageStats={this.state.batFirstAdvantageStats}
+              />
+            </div>
+          </Suspense>
           <Divider />
         </div>
         <div className="stat-subdiv">
@@ -158,9 +170,13 @@ class VenueStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container">
-            <OverProgressionChart overProgression={this.state.overProgStats} />
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className="stats-container">
+              <OverProgressionChart
+                overProgression={this.state.overProgStats}
+              />
+            </div>
+          </Suspense>
           <Divider />
         </div>
       </div>

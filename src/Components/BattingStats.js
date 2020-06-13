@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Divider, Cascader } from "antd";
 import { getYears } from "../Stats/commonStats";
 import {
@@ -6,11 +6,17 @@ import {
   partnershipDuo,
   typeOfRunsScored,
 } from "../Stats/battingStats";
-import PartnershipStat from "./BattingPresentationComponents/PartnershipStat";
-import DeathRuns from "./BattingPresentationComponents/DeathRuns";
-import RunsRatio from "./BattingPresentationComponents/RunsRatio";
-
 import "../App.scss";
+
+const PartnershipStat = lazy(() =>
+  import("./BattingPresentationComponents/PartnershipStat")
+);
+const DeathRuns = lazy(() =>
+  import("./BattingPresentationComponents/DeathRuns")
+);
+const RunsRatio = lazy(() =>
+  import("./BattingPresentationComponents/RunsRatio")
+);
 
 let yearOptions = getYears().map((year) => {
   const obj = { value: year, label: year };
@@ -112,9 +118,11 @@ class BattingStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container highestRunGetter-stat">
-            <DeathRuns highestRunGetters={this.state.highestRunGetters} />
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className="stats-container highestRunGetter-stat">
+              <DeathRuns highestRunGetters={this.state.highestRunGetters} />
+            </div>
+          </Suspense>
           <Divider />
         </div>
         <div className="stat-subdiv">
@@ -130,9 +138,11 @@ class BattingStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container bestPartnership-stat">
-            <PartnershipStat bestPartnerships={this.state.bestPartnerships} />
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className="stats-container bestPartnership-stat">
+              <PartnershipStat bestPartnerships={this.state.bestPartnerships} />
+            </div>
+          </Suspense>
           <Divider />
         </div>
         <div className="stat-subdiv">
@@ -148,9 +158,11 @@ class BattingStats extends React.Component {
               />
             </div>
           </div>
-          <div className="stats-container runsRatio-stat">
-            <RunsRatio runsRatio={this.state.runsRatio} />
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className="stats-container runsRatio-stat">
+              <RunsRatio runsRatio={this.state.runsRatio} />
+            </div>
+          </Suspense>
           <Divider />
         </div>
       </div>

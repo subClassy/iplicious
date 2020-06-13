@@ -1,14 +1,13 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Layout, Menu } from "antd";
 import Icon from "@ant-design/icons";
 import BatIcon from "./Icons/bat-icon.svg";
 import BowlIcon from "./Icons/bowl-icon.svg";
 import VenueIcon from "./Icons/venue-icon.svg";
-import BattingStats from "./Components/BattingStats";
-import BowlingStats from "./Components/BowlingStats";
-import VenueStats from "./Components/VenueStats";
-
 import "./App.scss";
+const BattingStats = lazy(() => import("./Components/BattingStats"));
+const BowlingStats = lazy(() => import("./Components/BowlingStats"));
+const VenueStats = lazy(() => import("./Components/VenueStats"));
 
 const iconPath = process.env.PUBLIC_URL + "/assets/";
 const { Content, Sider } = Layout;
@@ -83,15 +82,17 @@ class App extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Content className="site-layout-container">
-            <div className="site-layout-background">
-              {this.state.tab === "1" ? (
-                <BattingStats />
-              ) : this.state.tab === "2" ? (
-                <BowlingStats />
-              ) : (
-                <VenueStats />
-              )}
-            </div>
+            <Suspense fallback={<div>Loading...</div>}>
+              <div className="site-layout-background">
+                {this.state.tab === "1" ? (
+                  <BattingStats />
+                ) : this.state.tab === "2" ? (
+                  <BowlingStats />
+                ) : (
+                  <VenueStats />
+                )}
+              </div>
+            </Suspense>
           </Content>
         </Layout>
       </Layout>
