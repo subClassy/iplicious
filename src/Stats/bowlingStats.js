@@ -121,7 +121,7 @@ async function typeOfDismissals(year) {
       }
     }
   }
-  dismissals = new Map([...dismissals.entries()].sort((a, b) => a[0] - b[0]));
+  //   dismissals = new Map([...dismissals.entries()].sort((a, b) => a[0] - b[0]));
 
   return dismissals;
 }

@@ -143,11 +143,11 @@ async function typeOfRunsScored(year) {
         }
         if (typeof ball.Extra_Runs === "number") {
           let currentScore = 0;
-          if (runsScored.has("Extras")) {
-            currentScore = runsScored.get("Extras");
+          if (runsScored.has("Extra")) {
+            currentScore = runsScored.get("Extra");
           }
           currentScore += ball.Extra_Runs;
-          runsScored.set("Extras", currentScore);
+          runsScored.set("Extra", currentScore);
         }
       }
     }

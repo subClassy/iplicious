@@ -1,12 +1,12 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 
-function getChartParameters(runsRatio) {
+function getChartParameters(dismissalRatio) {
   let statData = [];
-  for (const [key, value] of runsRatio) {
+  for (const [key, value] of dismissalRatio) {
     statData.push({
-      id: `${key}s`,
-      label: `${key}s`,
+      id: `${key}`,
+      label: `${key}`,
       value: value,
     });
   }
@@ -14,9 +14,9 @@ function getChartParameters(runsRatio) {
   return statData;
 }
 
-class RunsRatio extends React.Component {
+class DismissalRatio extends React.Component {
   render() {
-    const data = getChartParameters(this.props.runsRatio);
+    const data = getChartParameters(this.props.dismissalRatio);
     return (
       <div className="partnership-chart-container">
         <ResponsivePie
@@ -31,6 +31,7 @@ class RunsRatio extends React.Component {
           borderWidth={1}
           borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
           radialLabelsTextXOffset={6}
+          radialLabelsSkipAngle={8}
           radialLabelsTextColor="#fff"
           radialLabelsLinkOffset={0}
           radialLabelsLinkDiagonalLength={16}
@@ -55,4 +56,4 @@ class RunsRatio extends React.Component {
   }
 }
 
-export default RunsRatio;
+export default DismissalRatio;
