@@ -6,6 +6,7 @@
     "@ant-design/icons": "^4.2.1",
     "@babel/core": "7.9.0",
     "@nivo/chord": "^0.62.0",
+    "@nivo/line": "^0.62.0",
     "@nivo/pie": "^0.62.0",
     "@nivo/radar": "^0.62.0",
     "@svgr/webpack": "4.3.3",

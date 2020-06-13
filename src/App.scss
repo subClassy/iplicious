@@ -131,6 +131,10 @@ $breakpoint-laptop: 1120px;
             flex: 2;
             max-width: 420px;
             grid-area: number1;
+            &:hover {
+              background: -webkit-linear-gradient(to left, #ff6a00, #ee0979);
+              background: linear-gradient(to left, #ff6a00, #ee0979);
+            }
             & .ant-statistic-title {
               @media (min-width: $breakpoint-phone) {
                 font-size: 2em;
@@ -149,6 +153,10 @@ $breakpoint-laptop: 1120px;
             background: -webkit-linear-gradient(to right, #414345, #232526);
             background: linear-gradient(to right, #414345, #232526);
             align-self: flex-end;
+            &:hover {
+              background: -webkit-linear-gradient(to left, #414345, #232526);
+              background: linear-gradient(to left, #414345, #232526);
+            }
             @media (max-width: $breakpoint-laptop) {
               max-width: 420px;
             }

@@ -1,5 +1,6 @@
 import matches from "./data/matches.json";
 import teams from "./data/teams.json";
+import balls from "./data/balls.json";
 import { getVenueString } from "./commonStats";
 
 async function homeWinsRatio(venue) {
@@ -51,7 +52,7 @@ async function homeWinsRatio(venue) {
   return homeWins;
 }
 
-async function battingFirstWins(venue) {
+async function battingFirstWinsRatio(venue) {
   let battingFirst = new Map();
   battingFirst.set("Wins", 0);
   battingFirst.set("Loses", 0);
@@ -89,4 +90,58 @@ async function battingFirstWins(venue) {
   return battingFirst;
 }
 
-export { homeWinsRatio, battingFirstWins };
+async function overProgression(venue) {
+  let oversMap_battingFirst = new Map();
+  let oversMap_battingSecond = new Map();
+  if (venue === "all") {
+    venue = getVenueString();
+  }
+
+  let jStarting = 0;
+  for (let i = 0; i < balls.length; i++) {
+    const ball = balls[i];
+    for (let j = jStarting; j < matches.length; j++) {
+      const match = matches[j];
+      if (
+        ball.Match_Id === match.Match_Id &&
+        venue.includes(match.Venue_Name)
+      ) {
+        jStarting = j;
+        if (
+          (match.Toss_Decision === "bat" &&
+            match.Toss_Winner_Id === ball.Team_Batting_Id) ||
+          (match.Toss_Decision === "field" &&
+            match.Toss_Winner_Id === ball.Team_Bowling_Id)
+        ) {
+          let currentTotal = 0;
+          if (oversMap_battingFirst.has(ball.Over_Id)) {
+            currentTotal = oversMap_battingFirst.get(ball.Over_Id);
+          }
+          if (typeof ball.Batsman_Scored === "number") {
+            currentTotal += ball.Batsman_Scored;
+          }
+          if (typeof ball.Extra_Runs === "number") {
+            currentTotal += ball.Extra_Runs;
+          }
+          oversMap_battingFirst.set(ball.Over_Id, currentTotal);
+        } else {
+          let currentTotal = 0;
+          if (oversMap_battingSecond.has(ball.Over_Id)) {
+            currentTotal = oversMap_battingSecond.get(ball.Over_Id);
+          }
+          if (typeof ball.Batsman_Scored === "number") {
+            currentTotal += ball.Batsman_Scored;
+          }
+          if (typeof ball.Extra_Runs === "number") {
+            currentTotal += ball.Extra_Runs;
+          }
+          oversMap_battingSecond.set(ball.Over_Id, currentTotal);
+        }
+      }
+    }
+  }
+
+  return [oversMap_battingFirst, oversMap_battingSecond];
+}
+
+export { homeWinsRatio, battingFirstWinsRatio, overProgression };
