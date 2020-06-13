@@ -6,6 +6,7 @@ import BowlIcon from "./Icons/bowl-icon.svg";
 import VenueIcon from "./Icons/venue-icon.svg";
 import BattingStats from "./Components/BattingStats";
 import BowlingStats from "./Components/BowlingStats";
+import VenueStats from "./Components/VenueStats";
 
 import "./App.scss";
 
@@ -16,7 +17,7 @@ const windowWidth = window.innerWidth;
 class App extends React.Component {
   state = {
     collapsed: windowWidth > 1024 ? false : true,
-    tab: "1",
+    tab: "3",
   };
 
   onCollapse = (collapsed) => {
@@ -83,7 +84,13 @@ class App extends React.Component {
         <Layout className="site-layout">
           <Content className="site-layout-container">
             <div className="site-layout-background">
-              {this.state.tab === "1" ? <BattingStats /> : <BowlingStats />}
+              {this.state.tab === "1" ? (
+                <BattingStats />
+              ) : this.state.tab === "2" ? (
+                <BowlingStats />
+              ) : (
+                <VenueStats />
+              )}
             </div>
           </Content>
         </Layout>

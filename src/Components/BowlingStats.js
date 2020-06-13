@@ -105,7 +105,7 @@ class BowlingStats extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="stat-heading">Batting Stats</h2>
+        <h2 className="stat-heading">Bowling Stats</h2>
         <Divider />
         <div className="stat-subdiv">
           <div className="heading">

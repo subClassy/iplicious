@@ -15,4 +15,17 @@ function getYearString() {
   return years.join("");
 }
 
-export { getYears, getYearString };
+function getVenues() {
+  let venues = matches.map((match) => {
+    return `${match.Venue_Name}, ${match.City_Name}`;
+  });
+  venues = venues.filter((item, i, ar) => ar.indexOf(item) === i);
+  return venues;
+}
+
+function getVenueString() {
+  const venues = getVenues();
+  return venues.join("");
+}
+
+export { getYears, getYearString, getVenues, getVenueString };
