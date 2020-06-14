@@ -624,7 +624,11 @@ module.exports = function (webpackEnv) {
       isEnvProduction &&
         new WorkboxWebpackPlugin.GenerateSW({
           clientsClaim: true,
-          exclude: [/\.map$/, /asset-manifest\.json$/],
+          exclude: [
+            /\.map$/,
+            /asset-manifest\.json$/,
+            /.(?:png|jpg|jpeg|svg)$/,
+          ],
           importWorkboxFrom: "cdn",
           navigateFallback: paths.publicUrlOrPath + "index.html",
           navigateFallbackBlacklist: [
@@ -635,6 +639,18 @@ module.exports = function (webpackEnv) {
             // URLs containing a "?" character won't be blacklisted as they're likely
             // a route with query params (e.g. auth callbacks).
             new RegExp("/[^/?]+\\.[^/]+$"),
+          ],
+          runtimeCaching: [
+            {
+              urlPattern: /.(?:png|jpg|jpeg|svg)$/,
+              handler: "CacheFirst",
+              options: {
+                cacheName: "images",
+                expiration: {
+                  maxEntries: 10,
+                },
+              },
+            },
           ],
         }),
       // TypeScript type checking
