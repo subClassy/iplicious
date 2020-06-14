@@ -47,9 +47,7 @@ class PartnershipStat extends React.Component {
       <div className="partnership-chart-container">
         <ResponsiveChord
           matrix={parcel[1]}
-          keys={parcel[0].map((player) => {
-            return player;
-          })}
+          keys={[...parcel[0]]}
           margin={{ top: 60, right: 60, bottom: 90, left: 60 }}
           arcOpacity={0.8}
           arcBorderWidth={1}

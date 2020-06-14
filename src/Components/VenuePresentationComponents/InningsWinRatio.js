@@ -33,9 +33,7 @@ class InningsWinRatio extends React.Component {
     return (
       <div className="partnership-chart-container">
         <ResponsiveBar
-          data={data.map((obj) => {
-            return obj;
-          })}
+          data={[...data]}
           keys={["batting1", "batting2", "NR"]}
           indexBy="Innings"
           margin={{ top: 50, right: 130, bottom: 50, left: 60 }}

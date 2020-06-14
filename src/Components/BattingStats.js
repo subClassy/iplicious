@@ -6,7 +6,6 @@ import {
   partnershipDuo,
   typeOfRunsScored,
 } from "../Stats/battingStats";
-import "../App.scss";
 
 const PartnershipStat = lazy(() =>
   import("./BattingPresentationComponents/PartnershipStat")

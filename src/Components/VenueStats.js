@@ -6,7 +6,6 @@ import {
   battingFirstWinsRatio,
   overProgression,
 } from "../Stats/venueStats";
-import "../App.scss";
 
 const OverProgressionChart = lazy(() =>
   import("./VenuePresentationComponents/OverProgressionChart")
