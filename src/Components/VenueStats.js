@@ -126,7 +126,7 @@ class VenueStats extends React.Component {
             </div>
           </div>
           <Suspense fallback={<div>Loading...</div>}>
-            <div className="stats-container highestRunGetter-stat">
+            <div className="stats-container">
               <HomeWinRatio
                 homeAdvantageStats={this.state.homeAdvantageStats}
               />
@@ -148,7 +148,7 @@ class VenueStats extends React.Component {
             </div>
           </div>
           <Suspense fallback={<div>Loading...</div>}>
-            <div className="stats-container ">
+            <div className="stats-container">
               <InningsWinRatio
                 batFirstAdvantageStats={this.state.batFirstAdvantageStats}
               />

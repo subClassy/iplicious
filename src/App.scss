@@ -2,16 +2,18 @@
 
 $breakpoint-phone: 425px;
 $breakpoint-tablet: 768px;
+$breakpoint-lg: 992px;
 $breakpoint-laptop: 1120px;
 
 .dashboard-layout {
   min-height: 100vh;
   font-family: Oswald;
 
-  & .ant-layout-sider {
-    flex: unset !important;
-    max-width: unset !important;
-    width: max-content !important;
+  & .sider-open {
+    flex: 0 0 300px !important;
+    max-width: 300px !important;
+    min-width: 300px !important;
+    width: 300px !important;
     overflow: hidden;
     height: 100vh;
     position: sticky;
@@ -23,7 +25,7 @@ $breakpoint-laptop: 1120px;
     margin: 40px;
 
     & img {
-      max-width: 230px;
+      max-width: -webkit-fill-available;
     }
   }
 
@@ -58,17 +60,21 @@ $breakpoint-laptop: 1120px;
     }
   }
 
-  & .ant-layout-sider-trigger {
-    position: unset;
-    width: unset !important;
-  }
+  // & .ant-layout-sider-trigger {
+  //   position: unset;
+  //   width: unset !important;
+  // }
 
   & .site-layout .site-layout-container {
     margin: 0 16px;
 
     & .site-layout-background {
-      padding: 24px;
+      padding-left: 30px;
       min-height: 360px;
+
+      @media (min-width: $breakpoint-lg) {
+        padding: 24px;
+      }
 
       & .stat-heading {
         font-weight: 700;
@@ -170,11 +176,15 @@ $breakpoint-laptop: 1120px;
           }
         }
 
+        & .bar-graph-container {
+          height: 500px;
+        }
+
         & .partnership-chart-container {
           @media (min-width: $breakpoint-tablet) {
             height: 500px;
           }
-          height: 250px;
+          height: 300px;
         }
       }
     }

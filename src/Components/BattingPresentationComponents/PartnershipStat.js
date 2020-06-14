@@ -8,6 +8,9 @@ function getChartParameters(bestPartnerships) {
   });
 
   playerList = [...new Set(playerList.flat())];
+  playerList = playerList.sort((a, b) => {
+    return 0.5 - Math.random();
+  });
 
   statMatrix = playerList.map((player1) => {
     let runScored = [];

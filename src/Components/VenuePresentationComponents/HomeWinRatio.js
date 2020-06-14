@@ -5,6 +5,9 @@ function getChartParameters(winRatio) {
   let statData = [];
   for (const [key, value] of winRatio) {
     let statObj = {};
+    if (key === "Home Team") {
+      continue;
+    }
     if (key === "Wins") {
       statObj["Innings"] = "Home";
       statObj["batting1"] = value;
@@ -31,7 +34,7 @@ class HomeWinRatio extends React.Component {
   render() {
     const data = getChartParameters(this.props.homeAdvantageStats);
     return (
-      <div className="partnership-chart-container">
+      <div className="bar-graph-container">
         {this.props.homeAdvantageStats.length !== 0 ? (
           <div>
             <h3>

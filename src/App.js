@@ -16,11 +16,16 @@ const windowWidth = window.innerWidth;
 class App extends React.Component {
   state = {
     collapsed: windowWidth > 1024 ? false : true,
+    breakpointBroken: false,
     tab: "1",
   };
 
   onCollapse = (collapsed) => {
     this.setState({ collapsed });
+  };
+
+  onBreakpoint = (broken) => {
+    this.setState({ breakpointBroken: broken });
   };
 
   onTabChange = (event) => {
@@ -31,7 +36,13 @@ class App extends React.Component {
     const { collapsed, tab } = this.state;
     return (
       <Layout className="dashboard-layout">
-        <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
+        <Sider
+          breakpoint="lg"
+          collapsedWidth={0}
+          onBreakpoint={this.onBreakpoint}
+          onCollapse={this.onCollapse}
+          className={this.state.breakpointBroken === false ? "sider-open" : ""}
+        >
           <div className={collapsed === true ? "logo-collapsed" : "logo"}>
             {collapsed === true ? (
               <img src={`${iconPath}logo.svg`} alt="Logo" />

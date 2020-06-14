@@ -31,7 +31,7 @@ class InningsWinRatio extends React.Component {
   render() {
     const data = getChartParameters(this.props.batFirstAdvantageStats);
     return (
-      <div className="partnership-chart-container">
+      <div className="bar-graph-container">
         <ResponsiveBar
           data={[...data]}
           keys={["batting1", "batting2", "NR"]}
