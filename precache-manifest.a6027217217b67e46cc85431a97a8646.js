@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1a464df445aef8aad277cf9623c49605",
+    "revision": "b4c0ffc71c3d78a2277ba5fe3e95d8d3",
     "url": "/iplicious/index.html"
   },
   {
@@ -44,16 +44,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iplicious/static/js/14.c83dc8fb.chunk.js"
   },
   {
-    "revision": "01f3b7f7ed9931aa8202",
-    "url": "/iplicious/static/js/15.00d157b6.chunk.js"
+    "revision": "1ec96091d365bbc38fba",
+    "url": "/iplicious/static/js/15.f9ba7c38.chunk.js"
   },
   {
     "revision": "c56ba51b2f1fa31e8f52",
     "url": "/iplicious/static/js/16.ea296a7a.chunk.js"
   },
   {
-    "revision": "07a51ea903fb5e916066",
-    "url": "/iplicious/static/js/17.20427891.chunk.js"
+    "revision": "d0564d60c760dfc1b281",
+    "url": "/iplicious/static/js/17.a3260ebf.chunk.js"
   },
   {
     "revision": "eb9d6c735b5a5e418153",
@@ -112,7 +112,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iplicious/static/js/main.c3c8fdde.chunk.js"
   },
   {
-    "revision": "0b3f3c40ac4023fc63c4",
-    "url": "/iplicious/static/js/runtime-main.06b7fad1.js"
+    "revision": "bfdff7ba33e2300f3a52",
+    "url": "/iplicious/static/js/runtime-main.8fff998a.js"
   }
 ]);
