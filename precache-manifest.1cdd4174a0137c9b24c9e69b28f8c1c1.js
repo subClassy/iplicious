@@ -1,31 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bfa646f869e5aa15255cf5cf94ec302a",
+    "revision": "385068d0c58a4573fb13a14422ec6da2",
     "url": "/iplicious/index.html"
   },
   {
-    "revision": "6080df90144f29b5e048",
+    "revision": "2720b215da6696eb61e7",
     "url": "/iplicious/static/css/10.f82150f6.chunk.css"
   },
   {
-    "revision": "df64d3d4d5cf6a9f54f2",
+    "revision": "873cbf46154101226d3b",
     "url": "/iplicious/static/css/main.1f8a46b3.chunk.css"
   },
   {
-    "revision": "2c4ad9e66118006d1051",
-    "url": "/iplicious/static/js/0.20b97813.chunk.js"
+    "revision": "35472a93cb0a17db4b5a",
+    "url": "/iplicious/static/js/0.f20d9cc4.chunk.js"
   },
   {
     "revision": "e1bb9fba3b6556deca59",
     "url": "/iplicious/static/js/1.fe133d1b.chunk.js"
   },
   {
-    "revision": "6080df90144f29b5e048",
-    "url": "/iplicious/static/js/10.1edfc24d.chunk.js"
+    "revision": "2720b215da6696eb61e7",
+    "url": "/iplicious/static/js/10.9197245e.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/iplicious/static/js/10.1edfc24d.chunk.js.LICENSE.txt"
+    "url": "/iplicious/static/js/10.9197245e.chunk.js.LICENSE.txt"
   },
   {
     "revision": "ba4639788faa579683f1",
@@ -72,8 +72,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iplicious/static/js/20.2d9a4c9b.chunk.js"
   },
   {
-    "revision": "094629db89820e9ed3b4",
-    "url": "/iplicious/static/js/21.0b970c3a.chunk.js"
+    "revision": "d9578e4598b69ccfa096",
+    "url": "/iplicious/static/js/21.7767d715.chunk.js"
   },
   {
     "revision": "554ab9a1984d58575a76",
@@ -108,11 +108,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iplicious/static/js/7.ae74f28c.chunk.js"
   },
   {
-    "revision": "df64d3d4d5cf6a9f54f2",
-    "url": "/iplicious/static/js/main.9fc47067.chunk.js"
+    "revision": "873cbf46154101226d3b",
+    "url": "/iplicious/static/js/main.c3c8fdde.chunk.js"
   },
   {
-    "revision": "c3ae7c26862d50ad58ed",
-    "url": "/iplicious/static/js/runtime-main.fa59f924.js"
+    "revision": "0b3f3c40ac4023fc63c4",
+    "url": "/iplicious/static/js/runtime-main.06b7fad1.js"
   }
 ]);
