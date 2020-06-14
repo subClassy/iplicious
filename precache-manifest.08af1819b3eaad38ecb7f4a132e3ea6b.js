@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c4707e8610ca29d5d896fdd93a0973e3",
+    "revision": "bc66ede18b1cdd2b6e11f7508b0ef6bc",
     "url": "/iplicious/index.html"
   },
   {
@@ -36,8 +36,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iplicious/static/js/12.9c2b9277.chunk.js"
   },
   {
-    "revision": "4b85a08ca1fd43f82d3a",
-    "url": "/iplicious/static/js/13.823dcf24.chunk.js"
+    "revision": "26d47e7a922798c03eab",
+    "url": "/iplicious/static/js/13.b3903b4c.chunk.js"
   },
   {
     "revision": "a924c15d33df517eb87d",
@@ -52,8 +52,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iplicious/static/js/16.ea296a7a.chunk.js"
   },
   {
-    "revision": "386fc56410e166fd0db7",
-    "url": "/iplicious/static/js/17.0cf7b479.chunk.js"
+    "revision": "59325d401931c0f30674",
+    "url": "/iplicious/static/js/17.8fa5c9e5.chunk.js"
   },
   {
     "revision": "eb9d6c735b5a5e418153",
@@ -112,7 +112,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iplicious/static/js/main.a9cfb2fa.chunk.js"
   },
   {
-    "revision": "d9f54393bcd836036960",
-    "url": "/iplicious/static/js/runtime-main.196c451a.js"
+    "revision": "97d5ad0a9899f96b7170",
+    "url": "/iplicious/static/js/runtime-main.b1b1d064.js"
   }
 ]);
