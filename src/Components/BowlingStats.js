@@ -6,7 +6,6 @@ import {
   extrasConceded,
   typeOfDismissals,
 } from "../Stats/bowlingStats";
-import "../App.scss";
 
 const DotBalls = lazy(() => import("./BowlingPresentationComponents/DotBall"));
 const ExtrasConceded = lazy(() =>
