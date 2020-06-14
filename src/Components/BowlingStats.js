@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Divider, Cascader } from "antd";
+import { Divider, Cascader, Spin } from "antd";
 import { getYears } from "../Stats/commonStats";
 import {
   dotBalls,
@@ -123,7 +123,19 @@ class BowlingStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container highestRunGetter-stat">
               <DotBalls mostDotBalls={this.state.mostDotBalls} />
             </div>
@@ -143,7 +155,19 @@ class BowlingStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container highestRunGetter-stat">
               <ExtrasConceded
                 mostExtrasConceded={this.state.mostExtrasConceded}
@@ -165,7 +189,19 @@ class BowlingStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container highestRunGetter-stat">
               <DismissalRatio dismissalRatio={this.state.dismissalType} />
             </div>

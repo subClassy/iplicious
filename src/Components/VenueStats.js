@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Divider, Cascader } from "antd";
+import { Divider, Cascader, Spin } from "antd";
 import { getVenues } from "../Stats/commonStats";
 import {
   homeWinsRatio,
@@ -125,7 +125,19 @@ class VenueStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container">
               <HomeWinRatio
                 homeAdvantageStats={this.state.homeAdvantageStats}
@@ -147,7 +159,19 @@ class VenueStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container">
               <InningsWinRatio
                 batFirstAdvantageStats={this.state.batFirstAdvantageStats}
@@ -169,10 +193,23 @@ class VenueStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container">
               <OverProgressionChart
                 overProgression={this.state.overProgStats}
+                breakpointBroken={this.props.breakpointBroken}
               />
             </div>
           </Suspense>

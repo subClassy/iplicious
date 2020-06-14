@@ -1,10 +1,11 @@
 import React, { lazy, Suspense } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Spin } from "antd";
 import Icon from "@ant-design/icons";
 import BatIcon from "./Icons/bat-icon.svg";
 import BowlIcon from "./Icons/bowl-icon.svg";
 import VenueIcon from "./Icons/venue-icon.svg";
-import "./App.scss";
+import "./Style/App.scss";
+
 const BattingStats = lazy(() => import("./Components/BattingStats"));
 const BowlingStats = lazy(() => import("./Components/BowlingStats"));
 const VenueStats = lazy(() => import("./Components/VenueStats"));
@@ -44,11 +45,7 @@ class App extends React.Component {
           className={this.state.breakpointBroken === false ? "sider-open" : ""}
         >
           <div className={collapsed === true ? "logo-collapsed" : "logo"}>
-            {collapsed === true ? (
-              <img src={`${iconPath}logo.svg`} alt="Logo" />
-            ) : (
-              <img src={`${iconPath}full-logo.svg`} alt="Logo" />
-            )}
+            <img src={`${iconPath}full-logo.svg`} alt="Logo" />
           </div>
           <Menu
             defaultSelectedKeys={[tab]}
@@ -93,14 +90,26 @@ class App extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Content className="site-layout-container">
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+              fallback={
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "2em",
+                  }}
+                >
+                  <Spin tip="Loading ..." />
+                </div>
+              }
+            >
               <div className="site-layout-background">
                 {this.state.tab === "1" ? (
                   <BattingStats />
                 ) : this.state.tab === "2" ? (
                   <BowlingStats />
                 ) : (
-                  <VenueStats />
+                  <VenueStats breakpointBroken={this.state.breakpointBroken} />
                 )}
               </div>
             </Suspense>

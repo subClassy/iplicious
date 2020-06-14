@@ -1,7 +1,19 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 
-function getChartParameters(overProgression) {
+const runsScale = {
+  type: "linear",
+  min: "auto",
+  max: "auto",
+  stacked: false,
+  reverse: false,
+};
+
+const overScale = {
+  type: "point",
+};
+
+function getChartParameters(overProgression, flip) {
   let statData = [];
   overProgression.forEach((battingType, i) => {
     let statObj = {};
@@ -18,10 +30,18 @@ function getChartParameters(overProgression) {
     statObj["color"] = color;
     statObj["data"] = [];
     for (const [key, value] of battingType) {
-      const coordinate = {
-        x: key,
-        y: value,
-      };
+      let coordinate = {};
+      if (flip) {
+        coordinate = {
+          x: value,
+          y: key,
+        };
+      } else {
+        coordinate = {
+          x: key,
+          y: value,
+        };
+      }
       statObj["data"].push(coordinate);
     }
     statData.push(statObj);
@@ -32,20 +52,17 @@ function getChartParameters(overProgression) {
 
 class OverProgressionChart extends React.Component {
   render() {
-    const data = getChartParameters(this.props.overProgression);
+    const data = getChartParameters(
+      this.props.overProgression,
+      this.props.breakpointBroken
+    );
     return (
-      <div className="partnership-chart-container">
+      <div className="bar-graph-container line-chart-container">
         <ResponsiveLine
           data={[...data]}
           margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-          xScale={{ type: "point" }}
-          yScale={{
-            type: "linear",
-            min: "auto",
-            max: "auto",
-            stacked: false,
-            reverse: false,
-          }}
+          xScale={this.props.breakpointBroken ? runsScale : overScale}
+          yScale={this.props.breakpointBroken ? overScale : runsScale}
           curve="natural"
           axisTop={null}
           axisRight={null}
@@ -54,7 +71,7 @@ class OverProgressionChart extends React.Component {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Overs",
+            legend: this.props.breakpointBroken ? "Runs Scored" : "Overs",
             legendOffset: 36,
             legendPosition: "middle",
           }}
@@ -63,7 +80,7 @@ class OverProgressionChart extends React.Component {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Runs Scored",
+            legend: this.props.breakpointBroken ? "Overs" : "Runs Scored",
             legendOffset: -45,
             legendPosition: "middle",
           }}
@@ -72,12 +89,13 @@ class OverProgressionChart extends React.Component {
           pointColor={{ from: "color", modifiers: [] }}
           pointBorderWidth={2}
           pointBorderColor={{ from: "serieColor", modifiers: [] }}
-          pointLabel="y"
+          pointLabel={this.props.breakpointBroken ? "x" : "y"}
           pointLabelYOffset={-12}
           enableArea={false}
-          enableGridX={false}
+          enableGridX={this.props.breakpointBroken}
+          enableGridY={!this.props.breakpointBroken}
           areaBlendMode="normal"
-          enableSlices="x"
+          enableSlices={this.props.breakpointBroken ? "y" : "x"}
           debugSlices={true}
           enableCrosshair={false}
           useMesh={true}

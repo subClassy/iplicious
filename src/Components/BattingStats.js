@@ -1,11 +1,12 @@
 import React, { lazy, Suspense } from "react";
-import { Divider, Cascader } from "antd";
+import { Divider, Cascader, Spin } from "antd";
 import { getYears } from "../Stats/commonStats";
 import {
   runsScoredAtDeath,
   partnershipDuo,
   typeOfRunsScored,
 } from "../Stats/battingStats";
+import "../Style/Stats.scss";
 
 const PartnershipStat = lazy(() =>
   import("./BattingPresentationComponents/PartnershipStat")
@@ -117,7 +118,19 @@ class BattingStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container highestRunGetter-stat">
               <DeathRuns highestRunGetters={this.state.highestRunGetters} />
             </div>
@@ -137,7 +150,19 @@ class BattingStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container bestPartnership-stat">
               <PartnershipStat bestPartnerships={this.state.bestPartnerships} />
             </div>
@@ -157,7 +182,19 @@ class BattingStats extends React.Component {
               />
             </div>
           </div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2em",
+                }}
+              >
+                <Spin tip="Loading ..." />
+              </div>
+            }
+          >
             <div className="stats-container runsRatio-stat">
               <RunsRatio runsRatio={this.state.runsRatio} />
             </div>
