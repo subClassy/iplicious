@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "385068d0c58a4573fb13a14422ec6da2",
+    "revision": "1a464df445aef8aad277cf9623c49605",
     "url": "/iplicious/index.html"
   },
   {
