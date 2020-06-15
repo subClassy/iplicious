@@ -1,68 +1,41 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# IPLicious
 
-## Available Scripts
+**IPLicious** is a Progressive Web App that allows you to view some interesting stats about the Indian Premier League. The app allows you to look at the stats, filter them according to your wish, and even interact with the charts.
+The stats themselves have been divided into three categories :
 
-In the project directory, you can run:
+1. **_Batting Stats_**
+   - Most Runs scored at the death overs
+   - The Best Partnership Duo
+   - Number of Runs Scored of each type
+2. **_Bowling Stats_**
+   - Most Dot Balls bowled
+   - Most Extras Conceded
+   - Number of Dismissals of each type
+3. **_Venue Stats_**
+   - Number of Wins for the Home and Away Teams
+   - Number of Wins batting first and second
+   - Over Progression for 1st and 2nd Innings
 
-### `yarn start`
+The Bowling and Batting Stats can be filtered via Years (2008-2018, All-Time) while the Venue Stats can be filtered via specific venues or all of the venues.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Repository URL](https://github.com/subClassy/iplicious)
+[WebApp URL](https://subclassy.github.io/iplicious/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Libraries and Frameworks used
 
-### `yarn test`
+To complete the above web app I used the following Libraries/Frameworks :
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `ReactJs`: The complete UI for the web app has been written using the ReactJs library.
+- `Creat-React-App (CRA)`: CRA is a tool to set up a React Application with a single command. I chose to use CRA because it not only makes the setup of the app easier it also provides in-built support for Progressive Web Apps (PWA).
+- `antd`: antd is a React UI library based on the Ant Design specifications. It provides a lot of high-quality and responsive react components out-of-the-box. Using this allowed me to handle the responsiveness of the complete UI more elegantly.
+- `nivo`: nivo is a powerful charting library built for React on top of D3. All the charts in web app have been made using nivo. The most important reason for using nivo was the responsive charts that are provided by the library.
+- `SASS`: SASS is basically CSS on steroids. It makes writing and reading CSS much easier.
+- `git`: Version-control system
 
-### `yarn build`
+## Bonus Points
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [ ] `Use Vue.js to create the web-app` - I used ReactJs to develop the app because of my experience and familiarity with the library.
+- [x] `Optimise the Loading Time` - To optimize the loading time of the app I used **code-splitting** to _lazy-load_ just the things that are needed currently. In ReactJs I achieved this using _Lazy_ which dynamically imports the components and _Suspense_ which provides a fallback for the components until they are loaded. Along with this, the **html-webpack-plugin** was used to minify CSS and JS along with other optimizations.
+- [x] `Mobile Responsive` - The complete UI has been made responsive for easy viewing on devices of all sizes. This was achieved partly with the help of the libraries I used like antd and nivo and partly with the help of media queries placed at certain breakpoints.
+- [x] `Progressive Web App` - The CRA provides in-built support for PWA with Service Workers and the Manifest File. It also provides support for caching to load the websites faster and allowing them to be usable when offline. The **workbox-webpack-plugin** is integrated into production configuration, and it generates a service worker file that will automatically precache all local assets.
+- [x] `Offline Usable` - This feature is a by-product of the PWA. Since the assets are being cached the app is usable even when one is offline.

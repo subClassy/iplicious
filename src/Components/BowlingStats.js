@@ -178,7 +178,9 @@ class BowlingStats extends React.Component {
         </div>
         <div className="stat-subdiv">
           <div className="heading">
-            <h2 className="stat-subheading">Dismissals Type</h2>
+            <h2 className="stat-subheading">
+              Number of Dismissals of each type
+            </h2>
             <div className="filter">
               <label>Filter: </label>
               <Cascader

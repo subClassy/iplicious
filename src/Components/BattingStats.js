@@ -171,7 +171,9 @@ class BattingStats extends React.Component {
         </div>
         <div className="stat-subdiv">
           <div className="heading">
-            <h2 className="stat-subheading">Ratio of Runs Scored</h2>
+            <h2 className="stat-subheading">
+              Number of Runs Scored of each type
+            </h2>
             <div className="filter">
               <label>Filter: </label>
               <Cascader
